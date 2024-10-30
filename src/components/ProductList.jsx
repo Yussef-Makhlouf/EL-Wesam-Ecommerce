@@ -200,14 +200,14 @@ export default function ProductList() {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="sr-only">Products</h2>
-        {/* Search Bar */}
-        <div className="mb-6">
+        <h2 className="sr-only">المنتجات</h2>
+        {/* Search Bar */}        
+        <div className="mb-6 text-right" dir='rtl'>
           <Input
-            label="Search Products"
+            label="ابحث عن منتج"
             value={searchTerm}
             onChange={handleSearch}
-            placeholder="Search by product name or category"
+            placeholder="ابحث عن منتج عن طريق الاسم او الفئة"
             className="w-full"
           />
         </div>

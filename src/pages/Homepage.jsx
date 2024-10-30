@@ -1,7 +1,7 @@
 import Category from "../components/category";
 import Companies from "../components/Companies";
 import { FooterWithPaymentLogosAndSocialMedia } from "../components/Footer";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavBar";
 import Pagination from "../components/Paggination";
 import ProductDetails from "../components/ProductDetails";
 import ProductList from "../components/ProductList";

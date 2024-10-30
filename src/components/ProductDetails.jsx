@@ -4,7 +4,7 @@
 import { StarIcon } from '@heroicons/react/20/solid'
 
 const product = {
-  name: 'Basic Tee 6-Pack',
+  name: 'شطاف مياه أسود اللون',
   price: '$192',
   href: '#',
   breadcrumbs: [
@@ -13,33 +13,33 @@ const product = {
   ],
   images: [
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
+      src: '../../public/photo_5841335275987519229_y.jpg',
+      alt: 'شطاف مياه',
     },
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-      alt: 'Model wearing plain black basic tee.',
+      src: '../../public/photo_5841335275987519232_y.jpg',
+      alt: 'شطاف مياه',
     },
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-      alt: 'Model wearing plain gray basic tee.',
+      src: '../../public/photo_5841335275987519228_y.jpg',
+      alt: 'شطاف مياه',
     },
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-      alt: 'Model wearing plain white basic tee.',
+      src: '../../public/photo_5841335275987519228_y.jpg',
+      alt: 'شطاف مياه',
     },
   ],
 
   description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+  'شطاف المياه الأسود هو الخيار المثالي لمن يبحث عن الأناقة والعملية. تصميمه الأنيق يجعله يتناسب مع أي حمام، ويضمن لك تجربة استخدام مريحة وسلسة.',
   highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
+    'مصنوع من مواد عالية الجودة',
+    'سهولة التركيب',
+    'تصميم عصري يتناسب مع جميع الأذواق',
+    'يعمل بكفاءة لتوفير المياه',
   ],
   details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+  'يأتي شطاف المياه الأسود بتصميم انسيابي يسمح لك بالتحكم في تدفق المياه بسهولة. استمتع بنظافة مثالية مع هذا المنتج الذي يجمع بين الأناقة والوظيفة. مثالي للاستخدام اليومي ويعزز من تجربة الحمام الخاصة بك.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -50,10 +50,10 @@ function classNames(...classes) {
 export default function ProductDetails() {
 
   return (
-    <div className="bg-white">
+    <div className="bg-white" dir='rtl'>
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center">Comfortable cotton t-shirt</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center">شطافات المياه</h1>
         </nav>
 
         {/* Image gallery */}
@@ -73,13 +73,13 @@ export default function ProductDetails() {
                 className="h-full w-full object-cover object-center"
               />
             </div>
-            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+            {/* <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
                 alt={product.images[2].alt}
                 src={product.images[2].src}
                 className="h-full w-full object-cover object-center"
               />
-            </div>
+            </div> */}
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
@@ -119,7 +119,7 @@ export default function ProductDetails() {
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
                 <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                  {reviews.totalCount} reviews
+                  {reviews.totalCount} تقييم
                 </a>
               </div>
             </div>

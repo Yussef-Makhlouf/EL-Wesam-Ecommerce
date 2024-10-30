@@ -1,34 +1,51 @@
 import { Card, Typography, Button } from "@material-tailwind/react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 export function FooterWithPaymentLogosAndSocialMedia() {
   return (
-    <Card className="mt-10 p-10 bg-gray-900 text-white">
+    <Card className="mt-10 p-10 bg-gray-900 text-white" dir="rtl">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Features & Information Section */}
         <div>
           <Typography variant="h6" className="mb-4 font-bold">
-            Features
+            السمات
           </Typography>
           <ul className="space-y-2">
             <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                Secure Payment
+              <Typography
+                variant="small"
+                className="hover:underline cursor-pointer"
+              >
+                الدفع الآمن
               </Typography>
             </li>
             <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                24/7 Support
+              <Typography
+                variant="small"
+                className="hover:underline cursor-pointer"
+              >
+                24/7 دعم
               </Typography>
             </li>
             <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                Fast Delivery
+              <Typography
+                variant="small"
+                className="hover:underline cursor-pointer"
+              >
+                توصيل سريع
               </Typography>
             </li>
             <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                Loyalty Program
+              <Typography
+                variant="small"
+                className="hover:underline cursor-pointer"
+              >
+                برنامج ولاء
               </Typography>
             </li>
           </ul>
@@ -37,14 +54,15 @@ export function FooterWithPaymentLogosAndSocialMedia() {
         {/* Company Info Section */}
         <div>
           <Typography variant="h6" className="mb-4 font-bold">
-            About Us
+            معلومات عنا
           </Typography>
           <Typography variant="small" className="opacity-70">
-            We are committed to providing the best products and services to our customers, ensuring a seamless and secure shopping experience.
+            نحن ملتزمون بتقديم أفضل المنتجات والخدمات لعملائنا، وضمان تجربة تسوق
+            سلسة وآمنة.{" "}
           </Typography>
           <div className="mt-6">
             <Typography variant="h6" className="font-bold">
-              Follow Us
+              تابعنا
             </Typography>
             <div className="flex gap-4 mt-2">
               <a href="#" className="hover:text-blue-500">
@@ -66,7 +84,7 @@ export function FooterWithPaymentLogosAndSocialMedia() {
         {/* Payment Logos Section */}
         <div>
           <Typography variant="h6" className="mb-4 font-bold">
-            Secure Payments
+          طرق دفع آمنة
           </Typography>
           <div className="flex gap-4">
             <img
@@ -91,22 +109,30 @@ export function FooterWithPaymentLogosAndSocialMedia() {
             />
           </div>
           <Typography variant="small" className="opacity-70 mt-4">
-            All transactions are secure and encrypted.
+          جميع المعاملات آمنة ومشفرة.
           </Typography>
         </div>
       </div>
-      
+
       {/* Footer Bottom Section */}
       <div className="mt-10 border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
         <Typography variant="small" className="opacity-70">
-          © 2024 Your Company. All Rights Reserved.
+           أساس الوسام بالطائف. جميع الحقوق محفوظة. © 2024
         </Typography>
         <div className="mt-4 md:mt-0">
-          <Button variant="text" size="sm" className="text-white opacity-70 hover:opacity-100">
-            Privacy Policy
+          <Button
+            variant="text"
+            size="sm"
+            className="text-white opacity-70 hover:opacity-100"
+          >
+            سياسة الخصوصية
           </Button>
-          <Button variant="text" size="sm" className="text-white opacity-70 hover:opacity-100 mx-4">
-            Terms of Service
+          <Button
+            variant="text"
+            size="sm"
+            className="text-white opacity-70 hover:opacity-100 mx-4"
+          >
+            شروط الخدمة
           </Button>
         </div>
       </div>
