@@ -95,9 +95,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Shop', href: '/product', current: false },
-  { name: 'Contact', href: '/contact', current: false },
+  { name: 'تسوق', href: '/product', current: false },
+  { name: 'اتصل بنا', href: '/contact', current: false },
+  { name: 'الصفحة الرئيسية', href: '/', current: true },
 ];
 
 function classNames(...classes) {
@@ -181,7 +181,7 @@ export default function Navbar1() {
             <div className="hidden sm:ml-6 sm:block">
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="البحث"
                 value={searchQuery}
                 onChange={handleSearch}
                 className="rounded-md px-24 py-2 text-sm text-gray-300 bg-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"

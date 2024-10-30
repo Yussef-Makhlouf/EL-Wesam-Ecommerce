@@ -13,17 +13,20 @@ export default function Example() {
         <div className="mx-auto max-w-2xl lg:max-w-4xl">
           <img
             alt=""
-            src="https://tailwindui.com/plus/img/logos/workcation-logo-indigo-600.svg"
-            className="mx-auto h-12"
+            src="./../public/Wessam.jpg"
+            className="mx-auto h-32"
           />
           <figure className="mt-10">
             <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
               <p>
-                “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias
-                molestiae. Numquam corrupti in laborum sed rerum et corporis.”
+              في قلب مدينة الطائف، نُقدم لكم أفضل الحلول لاحتياجاتكم من الأدوات الصحية و السباكة. نعمل بشغف لنقدم لعملائنا مجموعة متنوعة من المنتجات ذات الجودة العالية، مع التركيز على الابتكار والتصميم العصري.
+
+نسعى دائمًا لتلبية احتياجاتكم وتوفير تجربة تسوق مريحة وممتعة. سواء كنتم تبحثون عن أدوات جديدة لمشاريعكم المنزلية أو ترغبون في تحديث أنظمة السباكة لديكم، فإننا هنا لخدمتكم.
+
+أساس الوسام هو المكان الذي يجمع بين الجودة، الثقة، والأسعار المنافسة. انضموا إلينا واكتشفوا الفرق!
               </p>
             </blockquote>
-            <figcaption className="mt-10">
+            {/* <figcaption className="mt-10">
               <img
                 alt=""
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -36,7 +39,7 @@ export default function Example() {
                 </svg>
                 <div className="text-gray-600">CEO of Workcation</div>
               </div>
-            </figcaption>
+            </figcaption> */}
           </figure>
         </div>
       </section>
