@@ -87,12 +87,9 @@
 //     </Disclosure>
 //   )
 // }
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -105,41 +102,41 @@ function classNames(...classes) {
 }
 
 export default function Navbar1() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  // const [searchQuery, setSearchQuery] = useState('');
+  // // const [searchResults, setSearchResults] = useState([]);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(1);
 
-  useEffect(() => {
-    fetchProducts(currentPage, searchQuery);
-  }, [currentPage, searchQuery]);
+  // useEffect(() => {
+  //   fetchProducts(currentPage, searchQuery);
+  // }, [currentPage, searchQuery]);
 
-  const fetchProducts = async (page, query) => {
-    try {
-      const response = await axios.get(`http://localhost:3000/api/v1/products/getallproducts?page=${page}&limit=10&search=${query}`);
-      setSearchResults(response.data.products);
-      setTotalPages(response.data.totalPages);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
+  // const fetchProducts = async (page, query) => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:3000/api/v1/products/getallproducts?page=${page}&limit=10&search=${query}`);
+  //     setSearchResults(response.data.products);
+  //     setTotalPages(response.data.totalPages);
+  //   } catch (error) {
+  //     console.error('Error fetching products:', error);
+  //   }
+  // };
 
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset to first page on new search
-  };
+  // const handleSearch = (e) => {
+  //   setSearchQuery(e.target.value);
+  //   setCurrentPage(1); // Reset to first page on new search
+  // };
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  // const handlePrevious = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  // const handleNext = () => {
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
 
   return (
     <Disclosure as="nav" className="bg-slate-50">
@@ -178,15 +175,7 @@ export default function Navbar1() {
               ))}
             </div>
             {/* Search bar */}
-            <div className="hidden sm:ml-6 sm:block">
-              <input
-                type="text"
-                placeholder="Search"
-                value={searchQuery}
-                onChange={handleSearch}
-                className="rounded-md px-24 py-2 text-sm text-gray-300 bg-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              />
-            </div>
+
           </div>
         </div>
       </div>
