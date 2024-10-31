@@ -92,9 +92,9 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Shop', href: '/product', current: false },
-  { name: 'Contact', href: '/contact', current: false },
+  { name: 'تسوق', href: '/product', current: false },
+  { name: 'اتصل بنا', href: '/contact', current: false },
+  { name: 'الصفحة الرئيسية', href: '/', current: true },
 ];
 
 function classNames(...classes) {
@@ -174,7 +174,6 @@ export default function Navbar1() {
                 </a>
               ))}
             </div>
-            {/* Search bar */}
 
           </div>
         </div>
