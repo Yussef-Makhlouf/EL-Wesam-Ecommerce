@@ -1,4 +1,3 @@
-
 'use client'
 
 import { StarIcon } from '@heroicons/react/20/solid'
@@ -12,35 +11,21 @@ const product = {
     { id: 2, name: 'Clothing', href: '#' },
   ],
   images: [
-    {
-      src: '../../public/photo_5841335275987519229_y.jpg',
-      alt: 'شطاف مياه',
-    },
-    {
-      src: '../../public/photo_5841335275987519232_y.jpg',
-      alt: 'شطاف مياه',
-    },
-    {
-      src: '../../public/photo_5841335275987519228_y.jpg',
-      alt: 'شطاف مياه',
-    },
-    {
-      src: '../../public/photo_5841335275987519228_y.jpg',
-      alt: 'شطاف مياه',
-    },
+    { src: '../../public/photo_5841335275987519229_y.jpg', alt: 'شطاف مياه' },
+    { src: '../../public/photo_5841335275987519232_y.jpg', alt: 'شطاف مياه' },
+    { src: '../../public/photo_5841335275987519228_y.jpg', alt: 'شطاف مياه' },
+    { src: '../../public/photo_5841335275987519228_y.jpg', alt: 'شطاف مياه' },
   ],
-
-  description:
-  'شطاف المياه الأسود هو الخيار المثالي لمن يبحث عن الأناقة والعملية. تصميمه الأنيق يجعله يتناسب مع أي حمام، ويضمن لك تجربة استخدام مريحة وسلسة.',
+  description: 'شطاف المياه الأسود هو الخيار المثالي لمن يبحث عن الأناقة والعملية. تصميمه الأنيق يجعله يتناسب مع أي حمام، ويضمن لك تجربة استخدام مريحة وسلسة.',
   highlights: [
     'مصنوع من مواد عالية الجودة',
     'سهولة التركيب',
     'تصميم عصري يتناسب مع جميع الأذواق',
     'يعمل بكفاءة لتوفير المياه',
   ],
-  details:
-  'يأتي شطاف المياه الأسود بتصميم انسيابي يسمح لك بالتحكم في تدفق المياه بسهولة. استمتع بنظافة مثالية مع هذا المنتج الذي يجمع بين الأناقة والوظيفة. مثالي للاستخدام اليومي ويعزز من تجربة الحمام الخاصة بك.',
+  details: 'يأتي شطاف المياه الأسود بتصميم انسيابي يسمح لك بالتحكم في تدفق المياه بسهولة. استمتع بنظافة مثالية مع هذا المنتج الذي يجمع بين الأناقة والوظيفة. مثالي للاستخدام اليومي ويعزز من تجربة الحمام الخاصة بك.',
 }
+
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes) {
@@ -48,60 +33,38 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
-
   return (
-    <div className="bg-white" dir='rtl'>
+    <div className="bg-white" dir="rtl">
       <div className="pt-6">
+        <hr className="pb-6">
+        
+        </hr>
         <nav aria-label="Breadcrumb">
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center">شطافات المياه</h1>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-center">
+افضل المنتجات 
+          </h2>
+
+
+              
+
         </nav>
-
-        {/* Image gallery */}
-        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-          <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-            <img
-              alt={product.images[0].alt}
-              src={product.images[0].src}
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-          <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img
-                alt={product.images[1].alt}
-                src={product.images[1].src}
-                className="h-full w-full object-cover object-center"
-              />
+        <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center mb-6">شطافات المياه</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-8">
+          <div className="lg:col-span-2">
+            <div className="aspect-w-3 aspect-h-4 overflow-hidden rounded-lg">
+              <img src={product.images[0].src} alt={product.images[0].alt} className="h-full w-full object-cover object-center" />
             </div>
-            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img
-                alt={product.images[2].alt}
-                src={product.images[2].src}
-                className="h-full w-full object-cover object-center"
-              />
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              {product.images.slice(1).map((image, index) => (
+                <div key={index} className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
+                  <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-center" />
+                </div>
+              ))}
             </div>
           </div>
-          <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <img
-              alt={product.images[3].alt}
-              src={product.images[3].src}
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-        </div>
-
-        {/* Product info */}
-        <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-          <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+          <div className="mt-4 lg:mt-0 lg:row-span-3">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
-          </div>
-
-          {/* Options */}
-          <div className="mt-4 lg:row-span-3 lg:mt-0">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
-          <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
-
-            {/* Reviews */}
+            <p className="text-3xl text-gray-900">{product.price}</p>
             <div className="mt-6">
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
@@ -112,7 +75,7 @@ export default function ProductDetails() {
                       aria-hidden="true"
                       className={classNames(
                         reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
-                        'h-5 w-5 flex-shrink-0',
+                        'h-5 w-5 flex-shrink-0'
                       )}
                     />
                   ))}
@@ -123,40 +86,24 @@ export default function ProductDetails() {
                 </a>
               </div>
             </div>
-
+            <div className="mt-6">
+              <h2 className="text-sm font-medium text-gray-900">Highlights</h2>
+              <ul role="list" className="list-disc pl-5 space-y-2 text-sm text-gray-600">
+                {product.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
           </div>
-
-          <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-            {/* Description and details */}
-            <div>
-              <h3 className="sr-only">Description</h3>
-
-              <div className="space-y-6">
-                <p className="text-base text-gray-900">{product.description}</p>
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
-              <div className="mt-4">
-                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {product.highlights.map((highlight) => (
-                    <li key={highlight} className="text-gray-400">
-                      <span className="text-gray-600">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <h2 className="text-sm font-medium text-gray-900">Details</h2>
-
-              <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{product.details}</p>
-              </div>
-            </div>
+        </div>
+        <div className="mt-10 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">الوصف</h2>
+            <p className="mt-4 text-gray-700">{product.description}</p>
+          </div>
+          <div className="mt-8 lg:mt-0">
+            <h2 className="text-xl font-semibold text-gray-900">التفاصيل</h2>
+            <p className="mt-4 text-gray-700">{product.details}</p>
           </div>
         </div>
       </div>

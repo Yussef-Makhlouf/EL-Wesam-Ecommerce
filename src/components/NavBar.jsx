@@ -7,19 +7,19 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'اتصل بنا', href: '/contact' },
   { name: 'تسوق', href: '/product' },
-  { name: 'الصفحة الرئيسية', href: '/' },
+  { name: 'الصفحة الرئيسية', href: '/wessam' },
 ]
 
 export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <div className="bg-white"dir='rtl'  >
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">أساس الوسام بالطائف</span>
               <img
                 alt=""
                 src="../../public/Wessam.jpg"
@@ -46,19 +46,19 @@ export default function NavBar() {
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
+              أساس الوسام بالطائف <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between" dir='rtl'>
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
+                <span className="sr-only">أساس الوسام </span>
                 <img
                   alt=""
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+                  src="../../public/Wessam.jpg"
                   className="h-8 w-auto"
                 />
               </a>
@@ -71,7 +71,7 @@ export default function NavBar() {
                 <XMarkIcon aria-hidden="true" className="h-6 w-6" />
               </button>
             </div>
-            <div className="mt-6 flow-root">
+            <div className="mt-6 flow-root" dir='rtl'>
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
@@ -85,16 +85,20 @@ export default function NavBar() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <h3 className="text-sm font-semibold leading-6 text-gray-900">Contact</h3>
+                  <h3 className="text-sm font-semibold leading-6 text-gray-900">اتصل بنا </h3>
                   <div className="mt-2 space-y-2">
                     <p className="text-sm leading-6 text-gray-600">Call us on 010101010101</p>
+                    <p>
+                      اساس الوسام للادوات الصحيه بالطائف 
+                      نطوف بكم في موقعنا لتلبية جميع ما تحتاجون
+                    </p>
                   </div>
                   <div className="mt-6">
                     <a
-                      href="#"
+                      href="/contact"
                       className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
                     >
-                      Contact Us <span aria-hidden="true">→</span>
+                      اساس الوسام بالطائف <span aria-hidden="true">→</span>
                     </a>
                   </div>
 
@@ -121,10 +125,10 @@ export default function NavBar() {
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-600">
+              أساس الوسام بالطائف {' '}
+              <a href="/product" className="font-semibold text-indigo-600">
                 <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
+               <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>

@@ -7,7 +7,7 @@ import ProductList from "../components/ProductList";
 import ProductViews from "../components/ProductViews";
 
 const HomePage = ()=>{
-    return <dev>
+    return <>
       <NavBar />
       <Category />
       <ProductList />
@@ -15,6 +15,6 @@ const HomePage = ()=>{
       <ProductViews />
       <Companies />
       <FooterWithPaymentLogosAndSocialMedia />
-    </dev>
+    </>;
 }
 export default HomePage;

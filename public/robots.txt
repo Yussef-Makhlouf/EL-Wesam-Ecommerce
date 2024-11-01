@@ -1,0 +1,15 @@
+# Allow all search engines to access everything
+User-agent: *
+Disallow:
+
+# Block specific sections from being crawled
+User-agent: *
+Disallow: /admin
+Disallow: /settings
+Disallow: /user/profile
+
+# Allow only Googlebot to access /special-page
+User-agent: Googlebot
+Allow: /product
+Allow:/wessam
+Allow:/contact

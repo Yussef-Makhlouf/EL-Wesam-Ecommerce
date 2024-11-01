@@ -7,12 +7,12 @@ import ProductList from "../components/ProductList"
 const ProductShow = () => {
 
     return (
-        <div>
+        <>
             <Navbar1 />
             <Discount />
             <ProductList />
             <FooterWithPaymentLogosAndSocialMedia />
-        </div>
+        </>
     )
 }
 

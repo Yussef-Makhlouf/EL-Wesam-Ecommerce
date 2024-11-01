@@ -12,7 +12,7 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/wessam" element={<HomePage />} />
           <Route path="/product" element={<ProductShow />} />
           <Route path="/product/:{productId}" element={<ProductList />} />
           <Route path="/contact" element={<ContactUs />} />

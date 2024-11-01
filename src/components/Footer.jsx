@@ -13,7 +13,7 @@ export function FooterWithPaymentLogosAndSocialMedia() {
         {/* Features & Information Section */}
         <div>
           <Typography variant="h6" className="mb-4 font-bold">
-            السمات
+            اساس الوسام للادوات الصحيه بالطائف
           </Typography>
           <ul className="space-y-2">
             <li>
@@ -60,7 +60,7 @@ export function FooterWithPaymentLogosAndSocialMedia() {
             نحن ملتزمون بتقديم أفضل المنتجات والخدمات لعملائنا، وضمان تجربة تسوق
             سلسة وآمنة.{" "}
           </Typography>
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <Typography variant="h6" className="font-bold">
               تابعنا
             </Typography>
@@ -78,7 +78,7 @@ export function FooterWithPaymentLogosAndSocialMedia() {
                 <FaLinkedinIn size={20} />
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Payment Logos Section */}
