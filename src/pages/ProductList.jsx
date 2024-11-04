@@ -9,6 +9,7 @@ const ProductShow = () => {
     return (
         <>
             <Navbar1 />
+            
             <Discount />
             <ProductList />
             <FooterWithPaymentLogosAndSocialMedia />
