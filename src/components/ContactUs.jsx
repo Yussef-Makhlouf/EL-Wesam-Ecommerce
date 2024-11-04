@@ -1,5 +1,5 @@
 import { FooterWithPaymentLogosAndSocialMedia } from "./Footer";
-import Navbar1 from "./Navbar";
+import Navbar1 from "./NavBar";
 
 export default function Example() {
   return (
