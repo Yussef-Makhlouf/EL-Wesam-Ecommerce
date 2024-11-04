@@ -7,7 +7,7 @@ export function FooterWithPaymentLogosAndSocialMedia() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Features & Information Section */}
         <div>
-          <Typography variant="h6" className="mb-4 font-bold">
+          <Typography variant="h5" className="mb-4 font-bold">
             اساس الوسام للادوات الصحيه بالطائف
           </Typography>
           <ul className="space-y-2">
@@ -100,6 +100,7 @@ export function FooterWithPaymentLogosAndSocialMedia() {
             جميع المعاملات آمنة ومشفرة.
           </Typography>
         </div>
+
       </div>
 
       {/* Footer Bottom Section */}
@@ -115,6 +116,11 @@ export function FooterWithPaymentLogosAndSocialMedia() {
             شروط الخدمة
           </Button>
         </div>
+        <Typography variant="h6" className="font-bold ">
+          <a href="https://fashne.net/" className="hover:text-blue-500">
+          Al FASHNE FOR DIGITAL MARKETING AGENCY
+          </a>
+            </Typography>
       </div>
     </Card>
   );

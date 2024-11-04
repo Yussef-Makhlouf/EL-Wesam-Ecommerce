@@ -1,7 +1,7 @@
 const features = [
   { name: "المنشأ", description: "تم تصميمه بواسطة أساس الوسام للأدوات الصحية والسباكة" },
   { name: "المواد", description: "مصنوع من مواد عالية الجودة تشمل النحاس والصلب المطلي لمقاومة التآكل" },
-  { name: "الأبعاد", description: '7.5 سم × 15 سم × 5 سم' },
+  { name: "الدقه", description: 'تم تصميمه بواسطة أساس الوسام للأدوات الصحية والسباكة' },	
   { name: "اللمسات النهائية", description: "مصقول بعناية ومزود بطلاء للحماية من الصدأ" },
   { name: "التضمينات", description: "مجموعة مكونة من خرطوم المياه وجهاز التحكم في التدفق" },
   { name: "ملاحظات", description: "مصنوع من خامات طبيعية، قد تختلف الحبوب والألوان مع كل قطعة." },
@@ -34,22 +34,22 @@ export default function ProductViews() {
         <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
           <img
             alt="أداة صحية من أساس الوسام ذات جودة عالية."
-            src="https://via.placeholder.com/300"
+            src="../../public/pro8.jpg"
             className="rounded-lg bg-gray-100"
           />
           <img
             alt="تصميم عملي للأدوات الصحية من أساس الوسام."
-            src="https://via.placeholder.com/300"
+            src="../../public/pro1.png"
             className="rounded-lg bg-gray-100"
           />
           <img
             alt="منتجات السباكة المصممة بعناية من أساس الوسام."
-            src="https://via.placeholder.com/300"
+            src="../../public/pro9 (2).jpg"
             className="rounded-lg bg-gray-100"
           />
           <img
             alt="خامات متينة لأدوات السباكة من أساس الوسام."
-            src="https://tailwindui.com/plus/img/ecommerce-images/product-feature-03-detail-04.jpg"
+            src="../../public/pro5.jpg"
             className="rounded-lg bg-gray-100"
           />
         </div>

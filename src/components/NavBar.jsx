@@ -21,12 +21,14 @@ export default function NavBar() {
           className="flex items-center justify-between p-6 lg:px-8"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/product" className="-m-1.5 p-1.5">
               <span className="sr-only">أساس الوسام بالطائف</span>
               <img
-                alt=""
+                alt="logo"
                 src="../../public/Wessam.jpg"
                 className="h-32 w-auto bg-black rounded-full"
+                width={32}
+                height={32}
               />
             </a>
           </div>
@@ -35,6 +37,8 @@ export default function NavBar() {
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              title="Open main menu"
+              name="Open main menu"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -122,7 +126,7 @@ export default function NavBar() {
                   </div>
                   <div className="mt-6 text-center p-3">
                     <a
-                      href="/contact"
+                      href="https://www.facebook.com/asas.al.wissam"
                       className="text-sm font-semibold leading-6 text-green-600 hover:text-green-500 py-3 "
                     >
                       اساس الوسام بالطائف <span aria-hidden="true">→</span>
@@ -159,14 +163,14 @@ export default function NavBar() {
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
               أساس الوسام للأدوات الصحية بالطائف
             </h1>
             <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
               نقدم لك مجموعة شاملة من الأدوات الصحية عالية الجودة لتلبية
               احتياجاتك، مع التزامنا بتوفير أفضل المنتجات بأسعار تنافسية
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-10 flex items-center justify-center gap-x-6 px-4">
               <a
                 href="/product"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -174,7 +178,7 @@ export default function NavBar() {
                 البدء
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/asas.al.wissam"
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 اعرف المزيد <span aria-hidden="true">→</span>

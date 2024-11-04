@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../css/style.css';
+import '../css/style.min.css';
 
 export default function Category() {
   const [categories, setCategories] = useState([]);
