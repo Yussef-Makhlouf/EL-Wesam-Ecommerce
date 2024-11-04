@@ -87,11 +87,10 @@ export default function Discount() {
               </div>
 
               <a
-                href="#"
-                className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
+                href="https://api.whatsapp.com/send/?phone=966556507642"
+                className="inline-block rounded-md border border-transparent bg-green-600 px-8 py-3 text-center font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:text-base"
               >
-                اكتشف المجموعة
-              </a>
+اطلب WhatsApp              </a>
             </div>
           </div>
         </div>

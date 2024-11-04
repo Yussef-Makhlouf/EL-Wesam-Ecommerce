@@ -37,10 +37,10 @@ export default function Example() {
           {/* Call-to-Action Button */}
           <div className="mt-10 flex justify-center">
             <a
-              href="#contact"
-              className="px-6 py-3 text-white bg-indigo-600 rounded-full text-lg font-medium hover:bg-indigo-700 transition-colors duration-300"
+              href="https://api.whatsapp.com/send/?phone=966556507642"
+              className="px-6 py-3 text-white bg-green-700 rounded-full text-lg font-medium hover:bg-green-600 transition-colors duration-300"
             >
-              تواصل معنا الآن
+              تواصل معنا whatsApp
             </a>
           </div>
         </div>

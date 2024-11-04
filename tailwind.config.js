@@ -4,6 +4,9 @@ export const content = [
 ];
 export const theme = {
   extend: {     '@tailwindcss/aspect-ratio': {content: ["'self'"]},
+  fontFamily: {
+    'cain': ['Cairo', 'sans-serif'],
+  }
   },
 };
 export const plugins = [];

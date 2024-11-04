@@ -1,6 +1,7 @@
 /* Add this CSS to your global styles */
 .rtl {
     direction: rtl;
+    text-align: right;
   }
   
   .rtl h2 {

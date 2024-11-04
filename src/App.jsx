@@ -6,13 +6,13 @@ import ProductList from "./components/ProductList";
 
 import ErrorBoundary from "./ErrorBoundary";
 
-// import './App.css'
+import './App.css'
 function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
         <Routes>
-          <Route path="/wessam" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/product" element={<ProductShow />} />
           <Route path="/product/:{productId}" element={<ProductList />} />
           <Route path="/contact" element={<ContactUs />} />

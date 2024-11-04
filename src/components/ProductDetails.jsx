@@ -4,17 +4,15 @@ import { StarIcon } from '@heroicons/react/20/solid'
 
 const product = {
   name: 'شطاف مياه أسود اللون',
-  price: '$192',
   href: '#',
   breadcrumbs: [
     { id: 1, name: 'Men', href: '#' },
     { id: 2, name: 'Clothing', href: '#' },
   ],
   images: [
-    { src: '../../public/photo_5841335275987519229_y.jpg', alt: 'شطاف مياه' },
-    { src: '../../public/photo_5841335275987519232_y.jpg', alt: 'شطاف مياه' },
-    { src: '../../public/photo_5841335275987519228_y.jpg', alt: 'شطاف مياه' },
-    { src: '../../public/photo_5841335275987519228_y.jpg', alt: 'شطاف مياه' },
+    { src: 'https://via.placeholder.com/150', alt: 'شطاف مياه صورة 1' },
+    { src: 'https://via.placeholder.com/150', alt: 'شطاف مياه صورة 2' },
+    { src: 'https://via.placeholder.com/150', alt: 'شطاف مياه صورة 3' },
   ],
   description: 'شطاف المياه الأسود هو الخيار المثالي لمن يبحث عن الأناقة والعملية. تصميمه الأنيق يجعله يتناسب مع أي حمام، ويضمن لك تجربة استخدام مريحة وسلسة.',
   highlights: [
@@ -35,21 +33,22 @@ function classNames(...classes) {
 export default function ProductDetails() {
   return (
     <div className="bg-white" dir="rtl">
-      <div className="pt-6">
-        <hr className="pb-6">
-        
-        </hr>
+      <div className="pt-6 max-w-5xl mx-auto">
         <nav aria-label="Breadcrumb">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 text-center">
-افضل المنتجات 
+            اساس الوسام للادوات الصحية
           </h2>
-
-
-              
-
+          <p className="text-center text-gray-500 mb-4">الطائف - أفضل الأدوات الصحية بجودة عالية</p>
+          <hr className="my-4" />
         </nav>
-        <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center mb-6">شطافات المياه</h3>
+
+        <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center mb-6">
+          منتجات شطاف المياه
+        </h3>
+
+        {/* Main grid layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-8">
+          {/* Image Gallery */}
           <div className="lg:col-span-2">
             <div className="aspect-w-3 aspect-h-4 overflow-hidden rounded-lg">
               <img src={product.images[0].src} alt={product.images[0].alt} className="h-full w-full object-cover object-center" />
@@ -62,9 +61,10 @@ export default function ProductDetails() {
               ))}
             </div>
           </div>
+
+          {/* Product Information */}
           <div className="mt-4 lg:mt-0 lg:row-span-3">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
-            <p className="text-3xl text-gray-900">{product.price}</p>
             <div className="mt-6">
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
@@ -80,14 +80,15 @@ export default function ProductDetails() {
                     />
                   ))}
                 </div>
-                <p className="sr-only">{reviews.average} out of 5 stars</p>
                 <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
                   {reviews.totalCount} تقييم
                 </a>
               </div>
             </div>
+
+            {/* Highlights */}
             <div className="mt-6">
-              <h2 className="text-sm font-medium text-gray-900">Highlights</h2>
+              <h2 className="text-sm font-medium text-gray-900">مميزات المنتج</h2>
               <ul role="list" className="list-disc pl-5 space-y-2 text-sm text-gray-600">
                 {product.highlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>
@@ -96,6 +97,8 @@ export default function ProductDetails() {
             </div>
           </div>
         </div>
+
+        {/* Additional Details */}
         <div className="mt-10 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">الوصف</h2>

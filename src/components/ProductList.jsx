@@ -1,7 +1,8 @@
+
 // import { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import { Input, Spinner, Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
-// import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+// import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/20/solid';
 
 // export default function ProductList() {
 //   const [products, setProducts] = useState([]);
@@ -12,45 +13,28 @@
 //   const [selectedCategory, setSelectedCategory] = useState(null);
 //   const [loading, setLoading] = useState(true);
 //   const [error, setError] = useState(null);
-//   const [currentPage, setCurrentPage] = useState(1); // Page number for API pagination
-//   const [totalPages, setTotalPages] = useState(1); // Total number of pages from API
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [totalPages, setTotalPages] = useState(1);
 
 //   useEffect(() => {
 //     fetchData();
-//   }, [currentPage, selectedCategory]); // Update on page change or category filter
+//   }, [currentPage, selectedCategory]);
 
 //   const fetchData = async () => {
 //     setLoading(true);
 //     setError(null);
 
 //     try {
-//       // Fetch products with pagination, filtered by category if selected
 //       const categoryFilter = selectedCategory ? `&category=${selectedCategory}` : '';
-//       const productsResponse = await axios.get(
-//         `http://localhost:3000/api/v1/products/getallproducts?page=${currentPage}&limit=10${categoryFilter}`
+//       const { data: productsData } = await axios.get(
+//         `http://localhost:3000/api/v1/products/getallproducts?page=${currentPage}&limit=80${categoryFilter}`
 //       );
-//       setProducts(productsResponse.data.products);
-//       setFilteredProducts(productsResponse.data.products);
-//       setTotalPages(productsResponse.data.totalPages);
+//       setProducts(productsData.products);
+//       setFilteredProducts(productsData.products);
+//       setTotalPages(productsData.totalPages);
 
-//       // Fetch categories
-//       const categoriesResponse = await axios.get('http://localhost:3000/api/v1/categories/getallcategories');
-//       const allCategories = categoriesResponse.data.categories;
-
-//       // Map categories with icons
-//       const categoriesWithIcons = await Promise.all(
-//         allCategories.map(async (category) => {
-//           try {
-//             const categoryDetails = await axios.get(`http://localhost:3000/api/v1/categories/getonecategory/${category}`);
-//             return { ...category, icon: categoryDetails.data.icon };
-//           } catch (error) {
-//             console.error(`Error fetching category ${category._id}:`, error);
-//             return category;
-//           }
-//         })
-//       );
-
-//       setCategories(categoriesWithIcons);
+//       const { data: categoriesData } = await axios.get('http://localhost:3000/api/v1/categories/getallcategories');
+//       setCategories(categoriesData.categories);
 //     } catch (error) {
 //       console.error('Error fetching data:', error);
 //       setError('Failed to fetch data from server.');
@@ -61,7 +45,7 @@
 
 //   const filterProductsByCategory = (categoryId) => {
 //     setSelectedCategory(categoryId);
-//     setCurrentPage(1); // Reset to the first page on category filter change
+//     setCurrentPage(1); // Reset to first page on category change
 //     setSearchTerm("");
 //   };
 
@@ -94,16 +78,20 @@
 //     );
 //   };
 
+//   const filteredList = products.filter(product =>
+//     product.title && product.title.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
 //   return (
-//     <div className="bg-white flex flex-col lg:flex-row transition-all duration-500">
-//       {/* Sidebar with Smooth Slide-in */}
-//       <aside className="w-full lg:w-1/4 p-4 lg:p-6 border-b lg:border-b-0 lg:border-r border-gray-200 transition-transform transform-gpu">
+//     <div className="bg-gray-100 min-h-screen p-8 flex flex-col lg:flex-row transition-all duration-500">
+//       {/* Sidebar */}
+//       <aside className="w-full lg:w-1/4 p-4 lg:p-6 bg-white shadow-md rounded-lg mb-6 lg:mb-0 border border-gray-200" dir="rtl">
 //         <Accordion open={true}>
-//           <AccordionHeader>الفئات</AccordionHeader>
+//           <AccordionHeader className='text-right text-lg font-bold text-gray-900'>الفئات</AccordionHeader>
 //           <AccordionBody>
-//             <ul>
+//             <ul className='list-none text-right text-gray-700 mt-4'>
 //               <li
-//                 className={`cursor-pointer mb-2 ${!selectedCategory ? 'text-blue-600 font-semibold' : ''}`}
+//                 className={`cursor-pointer mb-4 ${!selectedCategory ? 'text-blue-600 font-bold' : ''}`}
 //                 onClick={() => filterProductsByCategory(null)}
 //               >
 //                 جميع المنتجات
@@ -111,7 +99,7 @@
 //               {categories.map((category) => (
 //                 <li
 //                   key={category._id}
-//                   className={`cursor-pointer mb-2 flex items-center ${selectedCategory === category._id ? 'text-blue-600 font-semibold' : ''}`}
+//                   className={`cursor-pointer mb-4 flex items-center ${selectedCategory === category._id ? 'text-blue-600 font-bold' : ''}`}
 //                   onClick={() => filterProductsByCategory(category._id)}
 //                 >
 //                   {category.icon && <img src={category.icon} alt={category.name} className="w-6 h-6 mr-2" />}
@@ -123,34 +111,34 @@
 //         </Accordion>
 //       </aside>
 
-//       {/* Product Grid with Pagination */}
-//       <div className="flex-1 mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 transition-opacity duration-500">
+//       {/* Main Content */}
+//       <div className="flex-1 mx-auto max-w-7xl px-4 py-6 transition-opacity duration-500">
 //         <h2 className="sr-only">المنتجات</h2>
 
 //         {loading ? (
-//           <div className="flex justify-center items-center h-full transition-opacity duration-500">
+//           <div className="flex justify-center items-center h-full">
 //             <Spinner className="h-12 w-12 text-blue-500" />
 //           </div>
 //         ) : error ? (
-//           <div className="text-center text-red-500 transition-opacity duration-500">{error}</div>
+//           <div className="text-center text-red-500">{error}</div>
 //         ) : (
 //           <>
-//             <div className="mb-6 text-right transition-all duration-500" dir="rtl">
+//             <div className="mb-6 text-right" dir="rtl">
 //               <Input
 //                 label="ابحث عن منتج"
 //                 value={searchTerm}
 //                 onChange={handleSearch}
 //                 placeholder="ابحث عن منتج عن طريق الاسم او الفئة"
-//                 className="w-full"
+//                 className="w-full border border-gray-300 rounded-lg"
 //               />
 //             </div>
 
-//             <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-8 transition-transform transform-gpu">
-//               {filteredProducts.map((product) => (
+//             <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+//               {filteredList.map((product) => (
 //                 <div
 //                   key={product._id}
 //                   onClick={() => handleProductClick(product)}
-//                   className="group cursor-pointer transform hover:scale-105 transition-transform duration-300"
+//                   className="group cursor-pointer bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
 //                 >
 //                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200">
 //                     <img
@@ -159,8 +147,8 @@
 //                       className="h-full w-full object-cover object-center group-hover:opacity-75"
 //                     />
 //                   </div>
-//                   <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
-//                   <p className="mt-1 text-lg font-medium text-gray-900">${product.price}</p>
+//                   <h3 className="mt-4 text-sm font-semibold text-gray-800">{product.title}</h3>
+//                   <p className="mt-1 text-lg font-bold text-blue-500">${product.price}</p>
 //                   {renderStars(product.rate)}
 //                   <p className="mt-1 text-sm text-gray-500">{product.category}</p>
 //                 </div>
@@ -169,22 +157,21 @@
 
 //             {/* Pagination Controls */}
 //             <div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-6">
-//               <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">
+//               <nav aria-label="Pagination" className="inline-flex rounded-md shadow-sm">
 //                 <button
 //                   onClick={handlePreviousPage}
 //                   disabled={currentPage === 1}
-//                   className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+//                   className="px-3 py-2 text-gray-400 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50"
 //                 >
-//                   <span className="sr-only">Previous</span>
 //                   <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
 //                 </button>
 //                 {[...Array(totalPages)].map((_, index) => (
 //                   <button
 //                     key={index}
 //                     onClick={() => setCurrentPage(index + 1)}
-//                     className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
-//                       currentPage === index + 1 ? 'bg-indigo-600 text-white' : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
-//                     } focus:z-20 focus:outline-offset-0`}
+//                     className={`px-4 py-2 text-sm font-medium ${
+//                       currentPage === index + 1 ? 'bg-blue-600 text-white' : 'text-gray-700 bg-white border border-gray-300'
+//                     }`}
 //                   >
 //                     {index + 1}
 //                   </button>
@@ -192,64 +179,50 @@
 //                 <button
 //                   onClick={handleNextPage}
 //                   disabled={currentPage === totalPages}
-//                   className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+//                   className="px-3 py-2 text-gray-400 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50"
 //                 >
-//                   <span className="sr-only">Next</span>
 //                   <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
 //                 </button>
 //               </nav>
 //             </div>
+
+//             {/* Modal */}
+//             {selectedProduct && (
+//               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+//                 <div className="bg-white rounded-lg max-w-lg w-full p-6 relative shadow-lg">
+//                   <button
+//                     onClick={closeModal}
+//                     className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+//                   >
+//                     <XMarkIcon className="h-6 w-6" />
+//                   </button>
+//                   <div className="flex">
+//                     <img src={selectedProduct.image} alt={selectedProduct.title} className="w-32 h-32 rounded-lg" />
+//                     <div className="ml-6 text-right">
+//                       <h3 className="text-xl font-semibold text-gray-900">{selectedProduct.title}</h3>
+//                       <p className="mt-1 text-lg font-bold text-blue-500">${selectedProduct.price}</p>
+//                       <p className="mt-2 text-gray-700">{selectedProduct.description}</p>
+//                       {renderStars(selectedProduct.rate)}
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             )}
 //           </>
 //         )}
 //       </div>
-
-//       {/* Modal with Fade-in Animation */}
-//       {selectedProduct && (
-//         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300">
-//           <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-4xl sm:w-full">
-//             <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-//               <div className="col-span-1">
-//                 <img
-//                   src={selectedProduct.image}
-//                   alt={selectedProduct.title}
-//                   className="w-full h-auto object-cover rounded"
-//                 />
-//               </div>
-//               <div className="col-span-1">
-//                 <div className="flex justify-between items-center">
-//                   <h3 className="text-2xl font-medium text-gray-900">{selectedProduct.title}</h3>
-//                   <button onClick={closeModal} className="text-gray-500 hover:text-gray-700">
-//                     &times;
-//                   </button>
-//                 </div>
-//                 <p className="mt-4 text-sm text-gray-700">{selectedProduct.description}</p>
-//                 <div className="mt-4">
-//                   <h4 className="font-medium text-gray-900">Highlights</h4>
-//                   <ul className="list-disc list-inside mt-2 text-sm text-gray-700">
-//                     {Array.isArray(selectedProduct.highlights) ? selectedProduct.highlights.map((highlight, index) => (
-//                       <li key={index}>{highlight}</li>
-//                     )) : <li>{selectedProduct.highlights}</li>}
-//                   </ul>
-//                 </div>
-//                 <p className="mt-6 text-lg font-medium text-gray-900">${selectedProduct.price}</p>
-//                 {renderStars(selectedProduct.rate)}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       )}
 //     </div>
 //   );
 // }
-// src/components/ProductList.js
+
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Input, Spinner, Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/20/solid';
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [categories, setCategories] = useState([]);
@@ -268,29 +241,15 @@ export default function ProductList() {
     setError(null);
 
     try {
-      // Fetch products with pagination and category filter
       const categoryFilter = selectedCategory ? `&category=${selectedCategory}` : '';
       const { data: productsData } = await axios.get(
-        `http://localhost:3000/api/v1/products/getallproducts?page=${currentPage}&limit=10${categoryFilter}`
+        `http://localhost:3000/api/v1/products/getallproducts?page=${currentPage}&limit=80${categoryFilter}`
       );
       setProducts(productsData.products);
-      setFilteredProducts(productsData.products);
       setTotalPages(productsData.totalPages);
 
-      // Fetch categories and icons
       const { data: categoriesData } = await axios.get('http://localhost:3000/api/v1/categories/getallcategories');
-      const categoriesWithIcons = await Promise.all(
-        categoriesData.categories.map(async (category) => {
-          try {
-            const { data: categoryDetails } = await axios.get(`http://localhost:3000/api/v1/categories/getonecategory/${category._id}`);
-            return { ...category, icon: categoryDetails.icon };
-          } catch (error) {
-            console.error(`Error fetching icon for category ${category._id}:`, error);
-            return category;
-          }
-        })
-      );
-      setCategories(categoriesWithIcons);
+      setCategories(categoriesData.categories);
     } catch (error) {
       console.error('Error fetching data:', error);
       setError('Failed to fetch data from server.');
@@ -335,19 +294,19 @@ export default function ProductList() {
   };
 
   const filteredList = products.filter(product =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    product.title && product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div className="bg-white flex flex-col lg:flex-row transition-all duration-500">
+    <div className="bg-gray-100 min-h-screen p-4 sm:p-8 flex flex-col lg:flex-row transition-all duration-500">
       {/* Sidebar */}
-      <aside className="w-full lg:w-1/4 p-4 lg:p-6 border-b lg:border-b-0 lg:border-r border-gray-200 transition-transform transform-gpu">
+      <aside className="w-full lg:w-1/4 p-4 lg:p-6 bg-white shadow-md rounded-lg mb-6 lg:mb-0 border border-gray-200" dir="rtl">
         <Accordion open={true}>
-          <AccordionHeader>الفئات</AccordionHeader>
+          <AccordionHeader className='text-right text-lg font-bold text-gray-900'>الفئات</AccordionHeader>
           <AccordionBody>
-            <ul>
+            <ul className='list-none text-right text-gray-700 mt-4'>
               <li
-                className={`cursor-pointer mb-2 ${!selectedCategory ? 'text-blue-600 font-semibold' : ''}`}
+                className={`cursor-pointer mb-4 ${!selectedCategory ? 'text-blue-600 font-bold' : ''}`}
                 onClick={() => filterProductsByCategory(null)}
               >
                 جميع المنتجات
@@ -355,7 +314,7 @@ export default function ProductList() {
               {categories.map((category) => (
                 <li
                   key={category._id}
-                  className={`cursor-pointer mb-2 flex items-center ${selectedCategory === category._id ? 'text-blue-600 font-semibold' : ''}`}
+                  className={`cursor-pointer mb-4 flex items-center ${selectedCategory === category._id ? 'text-blue-600 font-bold' : ''}`}
                   onClick={() => filterProductsByCategory(category._id)}
                 >
                   {category.icon && <img src={category.icon} alt={category.name} className="w-6 h-6 mr-2" />}
@@ -368,33 +327,33 @@ export default function ProductList() {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 transition-opacity duration-500">
+      <div className="flex-1 mx-auto max-w-7xl px-4 py-6 transition-opacity duration-500">
         <h2 className="sr-only">المنتجات</h2>
 
         {loading ? (
-          <div className="flex justify-center items-center h-full transition-opacity duration-500">
+          <div className="flex justify-center items-center h-full">
             <Spinner className="h-12 w-12 text-blue-500" />
           </div>
         ) : error ? (
-          <div className="text-center text-red-500 transition-opacity duration-500">{error}</div>
+          <div className="text-center text-red-500">{error}</div>
         ) : (
           <>
-            <div className="mb-6 text-right transition-all duration-500" dir="rtl">
+            <div className="mb-6 text-right" dir="rtl">
               <Input
                 label="ابحث عن منتج"
                 value={searchTerm}
                 onChange={handleSearch}
                 placeholder="ابحث عن منتج عن طريق الاسم او الفئة"
-                className="w-full"
+                className="w-full border border-gray-300 rounded-lg"
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-8 transition-transform transform-gpu">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 text-right">
               {filteredList.map((product) => (
                 <div
                   key={product._id}
                   onClick={() => handleProductClick(product)}
-                  className="group cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                  className="group cursor-pointer bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
                 >
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200">
                     <img
@@ -403,8 +362,8 @@ export default function ProductList() {
                       className="h-full w-full object-cover object-center group-hover:opacity-75"
                     />
                   </div>
-                  <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
-                  <p className="mt-1 text-lg font-medium text-gray-900">${product.price}</p>
+                  <h3 className="mt-4 text-sm font-semibold text-gray-800">{product.title}</h3>
+                  <p className="mt-1 text-lg font-bold text-blue-500">${product.price}</p>
                   {renderStars(product.rate)}
                   <p className="mt-1 text-sm text-gray-500">{product.category}</p>
                 </div>
@@ -413,25 +372,21 @@ export default function ProductList() {
 
             {/* Pagination Controls */}
             <div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-6">
-              <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">
+              <nav aria-label="Pagination" className="inline-flex rounded-md shadow-sm">
                 <button
-                name='previous'
-                title='previous'
                   onClick={handlePreviousPage}
                   disabled={currentPage === 1}
-                  className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                  className="px-3 py-2 text-gray-400 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 sm:px-4"
                 >
-                  <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
+                  <ChevronLeftIcon aria-hidden="true" className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
                 {[...Array(totalPages)].map((_, index) => (
                   <button
                     key={index}
-                    name='current'
-                    title='currentPage'
                     onClick={() => setCurrentPage(index + 1)}
-                    className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
-                      currentPage === index + 1 ? 'bg-indigo-600 text-white' : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
-                    } focus:z-20 focus:outline-offset-0`}
+                    className={`px-2 py-1 sm:px-4 sm:py-2 text-sm font-medium ${
+                      currentPage === index + 1 ? 'bg-blue-600 text-white' : 'text-gray-700 bg-white border border-gray-300'
+                    }`}
                   >
                     {index + 1}
                   </button>
@@ -439,52 +394,38 @@ export default function ProductList() {
                 <button
                   onClick={handleNextPage}
                   disabled={currentPage === totalPages}
-                  className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-                  title='next'
+                  className="px-3 py-2 text-gray-400 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 sm:px-4"
                 >
-                  <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
+                  <ChevronRightIcon aria-hidden="true" className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
               </nav>
             </div>
+
+            {/* Modal */}
+            {selectedProduct && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className="bg-white rounded-lg max-w-lg w-full p-6 relative shadow-lg sm:w-3/4 lg:w-1/2">
+                  <button
+                    onClick={closeModal}
+                    className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+                  >
+                    <XMarkIcon className="h-6 w-6" />
+                  </button>
+                  <div className="flex flex-col sm:flex-row items-center">
+                    <img src={selectedProduct.image} alt={selectedProduct.title} className="w-32 h-32 sm:w-48 sm:h-48 rounded-lg" />
+                    <div className="mt-4 sm:mt-0 sm:ml-6 text-right">
+                      <h3 className="text-xl font-semibold text-gray-900">{selectedProduct.title}</h3>
+                      <p className="mt-1 text-lg font-bold text-blue-500">${selectedProduct.price}</p>
+                      <p className="mt-2 text-gray-700">{selectedProduct.description}</p>
+                      {renderStars(selectedProduct.rate)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
-
-      {/* Product Modal */}
-      {selectedProduct && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300">
-          <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-4xl sm:w-full">
-            <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-              <div className="col-span-1">
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.title}
-                  className="w-full h-auto object-cover rounded"
-                />
-              </div>
-              <div className="col-span-1">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-2xl font-medium text-gray-900">{selectedProduct.title}</h3>
-                  <button onClick={closeModal} className="text-gray-500 hover:text-gray-700" title='closeModel' name='close'>
-                    &times;
-                  </button>
-                </div>
-                <p className="mt-4 text-sm text-gray-700">{selectedProduct.description}</p>
-                <div className="mt-4">
-                  <h4 className="font-medium text-gray-900">Highlights</h4>
-                  <ul className="list-disc list-inside mt-2 text-sm text-gray-700">
-                    {Array.isArray(selectedProduct.highlights) ? selectedProduct.highlights.map((highlight, index) => (
-                      <li key={index}>{highlight}</li>
-                    )) : <li>{selectedProduct.highlights}</li>}
-                  </ul>
-                </div>
-                <p className="mt-6 text-lg font-medium text-gray-900">${selectedProduct.price}</p>
-                {renderStars(selectedProduct.rate)}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

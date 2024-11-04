@@ -5,8 +5,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'تسوق', href: '/product', current: false },
+  { name: 'الصفحة الرئيسية', href: '/', current: true },
   { name: 'اتصل بنا', href: '/contact', current: false },
-  { name: 'الصفحة الرئيسية', href: '/wessam', current: true },
+
 ];
 
 function classNames(...classes) {
@@ -44,7 +45,7 @@ export default function Navbar1() {
                   href={item.href}
                   aria-current={item.current ? 'page' : undefined}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.current ? 'bg-green-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'rounded-md px-3 py-2 text-sm font-medium',
                   )}
                 >
