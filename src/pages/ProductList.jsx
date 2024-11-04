@@ -1,15 +1,14 @@
 
 import Discount from "../components/Discount"
 import { FooterWithPaymentLogosAndSocialMedia } from "../components/Footer"
-import Navbar1 from "../components/Navbaa"
+import Header from "../components/Header"
 import ProductList from "../components/ProductList"
 
 const ProductShow = () => {
 
     return (
         <>
-            <Navbar1 />
-            
+            <Header />
             <Discount />
             <ProductList />
             <FooterWithPaymentLogosAndSocialMedia />
