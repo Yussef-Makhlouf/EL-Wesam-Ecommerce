@@ -16,11 +16,11 @@ export default function Example() {
           <img
             alt="Logo"
             src="./../public/Wessam.jpg"
-            className="mx-auto h-32 rounded-full shadow-lg"
+            className="mx-auto max-h-64 max-w-auto rounded-full shadow-lg"
           />
           
           {/* Main Content */}
-          <figure className="mt-10 space-y-6">
+          <figure className="mt-10 space-y-6 sm:space-y-8 border border-gray-300 p-10 rounded-3xl">
             <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
               <p>
                 في قلب مدينة الطائف، نُقدم لكم أفضل الحلول لاحتياجاتكم من الأدوات الصحية و السباكة. نعمل بشغف لنقدم لعملائنا مجموعة متنوعة من المنتجات ذات الجودة العالية، مع التركيز على الابتكار والتصميم العصري.
@@ -83,10 +83,10 @@ export default function Example() {
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">آراء عملائنا</h2>
           <div className="mt-10 space-y-8">
             <blockquote className="text-lg text-gray-700">
-              "خدمة رائعة ومنتجات عالية الجودة! أساس الوسام هو المكان المناسب لجميع احتياجات السباكة."
+              &quot;خدمة رائعة ومنتجات عالية الجودة! أساس الوسام هو المكان المناسب لجميع احتياجات السباكة.&ldquo;
             </blockquote>
             <blockquote className="text-lg text-gray-700">
-              "فريق محترف وسريع الاستجابة. أنصح الجميع بالتعامل معهم."
+              &quot;فريق محترف وسريع الاستجابة. أنصح الجميع بالتعامل معهم.&quot;
             </blockquote>
           </div>
         </div>
