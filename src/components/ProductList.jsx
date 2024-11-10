@@ -210,11 +210,11 @@ export default function ProductList() {
                     <img
                       alt={product.title}
                       src={product.image}
-                      className="h-full w-full object-cover object-center group-hover:opacity-75"
+                      className="w-full h-auto object-cover object-center group-hover:opacity-75 transition-opacity "
                     />
                   </div>
                   <h3 className="mt-4 text-sm font-semibold text-gray-800">{product.title}</h3>
-                  <p className="mt-1 text-lg font-bold text-blue-500">${product.price}</p>
+                  <p className="mt-1 text-lg font-bold text-blue-500 "> <p>{product.price}</p>ر.س </p>
                   {renderStars(product.rate)}
                   <p className="mt-1 text-sm text-gray-500">{product.category}</p>
                 </div>
