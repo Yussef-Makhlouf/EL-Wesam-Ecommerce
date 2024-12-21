@@ -1,9 +1,12 @@
-
-
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Input, Spinner, Accordion, AccordionHeader, AccordionBody } from "@material-tailwind/react";
-import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Input } from "@material-tailwind/react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  XMarkIcon,
+} from "@heroicons/react/20/solid";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -15,6 +18,8 @@ export default function ProductList() {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setTotalPages] = useState(1);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -25,18 +30,22 @@ export default function ProductList() {
     setError(null);
 
     try {
-      const categoryFilter = selectedCategory ? `&category=${selectedCategory}` : '';
+      const categoryFilter = selectedCategory
+        ? `&category=${selectedCategory}`
+        : "";
       const { data: productsData } = await axios.get(
         `http://localhost:3000/api/v1/products/getallproducts?page=${currentPage}&limit=40${categoryFilter}`
       );
       setProducts(productsData.products);
       setTotalPages(productsData.pages);
 
-      const { data: categoriesData } = await axios.get('http://localhost:3000/api/v1/categories/getallcategories');
+      const { data: categoriesData } = await axios.get(
+        "http://localhost:3000/api/v1/categories/getallcategories"
+      );
       setCategories(categoriesData.categories);
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setError('Failed to fetch data from server.');
+      console.error("Error fetching data:", error);
+      setError("Failed to fetch data from server.");
     } finally {
       setLoading(false);
     }
@@ -44,7 +53,7 @@ export default function ProductList() {
 
   const filterProductsByCategory = (categoryName) => {
     setSelectedCategory(categoryName);
-    setCurrentPage(1); // Reset to first page on category change
+    setCurrentPage(1);
     setSearchTerm("");
   };
 
@@ -60,25 +69,51 @@ export default function ProductList() {
     if (currentPage < pages) setCurrentPage(currentPage + 1);
   };
 
+  const addToCart = (product) => {
+    const existingItem = cartItems.find((item) => item._id === product._id);
+  
+    if (existingItem) {
+      setCartItems(
+        cartItems.map((item) =>
+          item._id === product._id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
+  
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const halfStars = rating % 1 ? 1 : 0;
     const emptyStars = 5 - fullStars - halfStars;
     return (
       <div className="flex items-center mt-2">
-        {Array(fullStars).fill(0).map((_, index) => (
-          <span key={`full-${index}`} className="text-yellow-400">★</span>
-        ))}
+        {Array(fullStars)
+          .fill(0)
+          .map((_, index) => (
+            <span key={`full-${index}`} className="text-yellow-400">
+              ★
+            </span>
+          ))}
         {halfStars > 0 && <span className="text-yellow-400">☆</span>}
-        {Array(emptyStars).fill(0).map((_, index) => (
-          <span key={`empty-${index}`} className="text-gray-300">☆</span>
-        ))}
+        {Array(emptyStars)
+          .fill(0)
+          .map((_, index) => (
+            <span key={`empty-${index}`} className="text-gray-300">
+              ☆
+            </span>
+          ))}
       </div>
     );
   };
 
-  const filteredList = products.filter(product =>
-    product.title && product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredList = products.filter(
+    (product) =>
+      product.title &&
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const renderPagination = () => {
@@ -92,17 +127,20 @@ export default function ProductList() {
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
           className="px-3 py-2 text-gray-400 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 sm:px-4"
-          title='Previous'
-          name='Previous'
+          title="Previous"
+          name="Previous"
         >
-          <ChevronLeftIcon aria-hidden="true" className="h-5 w-5 sm:h-6 sm:w-6" />
+          <ChevronLeftIcon
+            aria-hidden="true"
+            className="h-5 w-5 sm:h-6 sm:w-6"
+          />
         </button>
         {startPage > 1 && (
           <button
             onClick={() => setCurrentPage(1)}
             className="px-2 py-1 sm:px-4 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300"
-            title='1'
-            name='1'
+            title="1"
+            name="1"
           >
             1
           </button>
@@ -117,21 +155,24 @@ export default function ProductList() {
               name={page}
               onClick={() => setCurrentPage(page)}
               className={`px-2 py-1 sm:px-4 sm:py-2 text-sm font-medium ${
-                currentPage === page ? 'bg-blue-600 text-white' : 'text-gray-700 bg-white border border-gray-300'
+                currentPage === page
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-700 bg-white border border-gray-300"
               }`}
             >
               {page}
             </button>
           );
         })}
-        {endPage < pages - 1 && <span className="px-2 py-1 text-gray-500">...</span>}
+        {endPage < pages - 1 && (
+          <span className="px-2 py-1 text-gray-500">...</span>
+        )}
         {endPage < pages && (
           <button
             onClick={() => setCurrentPage(pages)}
-            title='Last'
-            name='Last'
+            title="Last"
+            name="Last"
             className="px-2 py-1 sm:px-4 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300"
-
           >
             {pages}
           </button>
@@ -140,119 +181,234 @@ export default function ProductList() {
           onClick={handleNextPage}
           disabled={currentPage === pages}
           className="px-3 py-2 text-gray-400 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 sm:px-4"
-          title='Next'
-          name='Next'
+          title="Next"
+          name="Next"
         >
-          <ChevronRightIcon aria-hidden="true" className="h-5 w-5 sm:h-6 sm:w-6" />
+          <ChevronRightIcon
+            aria-hidden="true"
+            className="h-5 w-5 sm:h-6 sm:w-6"
+          />
         </button>
       </nav>
     );
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4 sm:p-8 flex flex-col lg:flex-row transition-all duration-500">
-      {/* Sidebar */}
-      <aside className="w-full lg:w-1/4 p-4 lg:p-6 bg-white shadow-md rounded-lg mb-6 lg:mb-0 border border-gray-200" dir="rtl">
-        <Accordion open={true}>
-          <AccordionHeader className='text-right text-lg font-bold text-gray-900'>الفئات</AccordionHeader>
-          <AccordionBody>
-            <ul className='list-none text-right text-gray-700 mt-4'>
-              <li
-                className={`cursor-pointer mb-4 ${!selectedCategory ? 'text-blue-600 font-bold' : ''}`}
-                onClick={() => filterProductsByCategory(null)}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Categories Header - Visible on all screens */}
+      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <button
+              onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+              className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-xl transition-colors"
+            >
+              <motion.svg
+                animate={{ rotate: isCategoriesOpen ? 180 : 0 }}
+                className="w-6 h-6 text-gray-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                جميع المنتجات
-              </li>
-              {categories.map((category) => (
-                <li
-                  key={category.name}
-                  className={`cursor-pointer mb-4 flex items-center ${selectedCategory === category.name ? 'text-blue-600 font-bold' : ''}`}
-                  onClick={() => filterProductsByCategory(category.name)}
-                >
-                  {category.icon && <img src={category.icon} alt={category.name} className="w-6 h-6 mr-2" />}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </motion.svg>
+              <span className="font-medium text-gray-700">التصنيفات</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Categories Grid - Expandable on all screens */}
+      <motion.div
+        animate={{ height: isCategoriesOpen ? "auto" : 0 }}
+        className="overflow-hidden bg-white/90 backdrop-blur-xl border-b border-gray-100"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <motion.button
+              onClick={() => filterProductsByCategory(null)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`p-4 rounded-xl text-center transition-all ${
+                !selectedCategory
+                  ? "bg-blue-500 text-white shadow-lg"
+                  : "bg-gray-50 hover:bg-gray-100"
+              }`}
+            >
+              <span className="block text-lg font-medium">كل المنتجات</span>
+            </motion.button>
+
+            {categories.map((category) => (
+              <motion.button
+                key={category.name}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => filterProductsByCategory(category.name)}
+                className={`p-4 rounded-xl text-center transition-all ${
+                  selectedCategory === category.name
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "bg-gray-50 hover:bg-gray-100"
+                }`}
+              >
+                {category.icon && (
+                  <img
+                    src={category.icon}
+                    alt=""
+                    className="w-12 h-12 mx-auto mb-2 rounded-xl p-2 bg-white/90"
+                  />
+                )}
+                <span className="block text-lg font-medium">
                   {category.name}
-                </li>
-              ))}
-            </ul>
-          </AccordionBody>
-        </Accordion>
-      </aside>
+                </span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 mx-auto max-w-7xl px-4 py-6 transition-opacity duration-500">
-        <h2 className="sr-only">المنتجات</h2>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Search Bar - Responsive */}
+        <div className="sticky top-20 z-30 mb-8 max-w-3xl mx-auto">
+          <Input
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="ابحث عن منتج..."
+            className="w-full h-12 sm:h-14 px-6 bg-white/90 backdrop-blur-xl rounded-2xl"
+          />
+        </div>
 
-        {loading ? (
-          <div className="flex justify-center items-center h-full">
-            <Spinner className="h-12 w-12 text-blue-500" />
-          </div>
-        ) : error ? (
-          <div className="text-center text-red-500">{error}</div>
-        ) : (
-          <>
-            <div className="mb-6 text-right" dir="rtl">
-              <Input
-                value={searchTerm}
-                onChange={handleSearch}
-                placeholder="ابحث عن منتج عن طريق الاسم او الفئة"
-                className="w-full border border-gray-600 rounded-lg"
-              />
-            </div>
+        {/* Responsive Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {filteredList.map((product, index) => (
+            <motion.div
+              key={product._id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-all duration-500"
+            >
+              <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 text-right">
-              {filteredList.map((product) => (
-                <div
-                  key={product._id}
-                  onClick={() => handleProductClick(product)}
-                  className="group cursor-pointer bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
-                >
-                  <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200">
-                    <img
-                      alt={product.title}
-                      src={product.image}
-                      className="w-full h-auto object-cover object-center group-hover:opacity-75 transition-opacity "
-                    />
-                  </div>
-                  <h3 className="mt-4 text-sm font-semibold text-gray-800">{product.title}</h3>
-                  <p className="mt-1 text-lg font-bold text-blue-500 "> <p>{product.price}</p>ر.س </p>
-                  {renderStars(product.rate)}
-                  <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                <div className="absolute bottom-4 right-4 left-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <button
+                    onClick={() => handleProductClick(product)}
+                    className="w-full bg-white/90 backdrop-blur-sm text-gray-900 py-2 rounded-xl hover:bg-white transition-colors"
+                  >
+                    عرض التفاصيل
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Pagination Controls */}
-            <div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-6">
-              {renderPagination()}
-            </div>
+              <div className="mt-4 space-y-2">
+                <div className="flex justify-between items-start">
+                  <div className="flex flex-col items-start">
+                    <span className="text-lg font-bold text-blue-600">
+                      {product.price} ر.س
+                    </span>
+                    <span className="text-sm text-gray-400 line-through">
+                      {(product.price * 1.2).toFixed(2)} ر.س
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-gray-800 line-clamp-2 hover:text-blue-600 transition-colors duration-300">
+                    {product.title}
+                  </h3>
+                </div>
 
-            {/* Modal */}
-            {selectedProduct && (
-              <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                <div className="bg-white rounded-lg max-w-lg w-full p-6 relative shadow-lg sm:w-3/4 lg:w-1/2">
+                <div className="flex justify-between items-center border-t border-gray-100 pt-3">
+                  <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                    {product.category}
+                  </span>
+                  {renderStars(product.rate)}
+                </div>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(product);
+                  }}
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 px-4 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z" />
+                  </svg>
+                  إضافة للسلة
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Responsive Modal */}
+        <AnimatePresence>
+          {selectedProduct && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 p-4 bg-black/50 backdrop-blur-sm"
+            >
+              <div className="relative w-full max-w-2xl mx-auto mt-20">
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0.9 }}
+                  className="bg-white rounded-2xl shadow-xl overflow-hidden"
+                >
                   <button
                     onClick={closeModal}
-                    className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
-                    title='Close'
-                    name='Close'
+                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
                   >
                     <XMarkIcon className="h-6 w-6" />
                   </button>
-                  <div className="flex flex-col sm:flex-row items-center">
-                    <img src={selectedProduct.image} alt={selectedProduct.title} className="w-32 h-32 sm:w-48 sm:h-48 rounded-lg" />
-                    <div className="mt-4 sm:mt-0 sm:ml-6 text-right">
-                      <h3 className="text-xl font-semibold text-gray-900">{selectedProduct.title}</h3>
-                      <p className="mt-1 text-lg font-bold text-blue-500">${selectedProduct.price}</p>
-                      <p className="mt-2 text-gray-700">{selectedProduct.description}</p>
+                  <div className="p-6">
+                    <img
+                      src={selectedProduct.image}
+                      alt={selectedProduct.title}
+                      className="w-full h-64 object-cover rounded-xl"
+                    />
+                    <h3 className="mt-4 text-xl font-bold text-gray-900">
+                      {selectedProduct.title}
+                    </h3>
+                    <p className="mt-2 text-gray-600">
+                      {selectedProduct.description}
+                    </p>
+                    <div className="mt-4 flex justify-between items-center">
+                      <p className="text-2xl font-bold text-blue-600">
+                        {selectedProduct.price} ر.س
+                      </p>
                       {renderStars(selectedProduct.rate)}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            )}
-          </>
-        )}
-      </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Responsive Pagination */}
+        <div className="mt-8 sm:mt-12">
+          <div className="max-w-md mx-auto">{renderPagination()}</div>
+        </div>
+      </main>
     </div>
   );
 }
+

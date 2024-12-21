@@ -9,49 +9,85 @@ const features = [
 
 export default function ProductViews() {
   return (
-    <div className="bg-white" dir="rtl">
-      <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            مواصفات منتجات أساس الوسام
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50" dir="rtl">
+      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
+            منتجات أساس الوسام
           </h2>
-          <p className="mt-4 text-gray-500">
-            تقدم شركة أساس الوسام بالطائف مجموعة مميزة من الأدوات الصحية والسباكة، حيث تمتاز منتجاتنا بتصميمات عملية وجودة عالية. نحن نوفر منتجات تلبي احتياجات جميع العملاء، من تجهيزات الحمامات الفاخرة إلى أدوات السباكة المتينة التي تضمن كفاءة استخدام وتوفير استهلاك المياه. جميع منتجاتنا مصنوعة من خامات مختارة بعناية لضمان متانة فائقة وشمولية في الاستخدام اليومي، مما يضمن رضا العملاء وتجربة استخدام مريحة.
-          </p>
-
-          <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-            {features.map((feature) => (
-              <div key={feature.name} className="border-t border-gray-200 pt-4">
-                <dt className="font-medium text-gray-900">{feature.name}</dt>
-                <dd className="mt-2 text-sm text-gray-500">
-                  {feature.description}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
         </div>
-        
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <img
-            alt="أداة صحية من أساس الوسام ذات جودة عالية."
-            src="../../public/pro8.jpg"
-            className="rounded-lg bg-gray-100"
-          />
-          <img
-            alt="تصميم عملي للأدوات الصحية من أساس الوسام."
-            src="../../public/pro1.png"
-            className="rounded-lg bg-gray-100"
-          />
-          <img
-            alt="منتجات السباكة المصممة بعناية من أساس الوسام."
-            src="../../public/pro9 (2).jpg"
-            className="rounded-lg bg-gray-100"
-          />
-          <img
-            alt="خامات متينة لأدوات السباكة من أساس الوسام."
-            src="../../public/pro5.jpg"
-            className="rounded-lg bg-gray-100"
-          />
+
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Content Section */}
+          <div className="bg-white rounded-2xl p-8 shadow-xl">
+            <p className="text-lg text-gray-600 leading-relaxed mb-12">
+              تقدم شركة أساس الوسام بالطائف مجموعة مميزة من الأدوات الصحية والسباكة، حيث تمتاز منتجاتنا بتصميمات عملية وجودة عالية.
+            </p>
+
+            <div className="grid grid-cols-2 gap-6">
+              {features.map((feature) => (
+                <div
+                  key={feature.name}
+                  className="bg-blue-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-300"
+                >
+                  <dt className="font-bold text-blue-800 mb-3 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                    {feature.name}
+                  </dt>
+                  <dd className="text-gray-600 text-sm leading-relaxed">
+                    {feature.description}
+                  </dd>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Image Grid */}
+          <div className="grid grid-cols-2 gap-6">
+            <img
+              src="../../public/pro8.jpg"
+              alt="أداة صحية"
+              className="rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 col-span-2 h-64 w-full object-cover"
+            />
+            <img
+              src="../../public/pro1.png"
+              alt="تصميم عملي"
+              className="rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 h-48 w-full object-cover"
+            />
+            <img
+              src="../../public/pro9 (2).jpg"
+              alt="منتجات السباكة"
+              className="rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 h-48 w-full object-cover"
+            />
+            <img
+              src="../../public/pro5.jpg"
+              alt="خامات متينة"
+              className="rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 col-span-2 h-64 w-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
+          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+            <div className="text-3xl font-bold text-blue-600 mb-2">+1000</div>
+            <div className="text-gray-600">منتج متنوع</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+            <div className="text-3xl font-bold text-blue-600 mb-2">25</div>
+            <div className="text-gray-600">سنة خبرة</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+            <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
+            <div className="text-gray-600">رضا العملاء</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+            <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
+            <div className="text-gray-600">دعم فني</div>
+          </div>
         </div>
       </div>
     </div>

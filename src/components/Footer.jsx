@@ -1,127 +1,105 @@
-import { Card, Typography, Button } from "@material-tailwind/react";
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 export function FooterWithPaymentLogosAndSocialMedia() {
   return (
-    <Card className="mt-10 p-10 bg-gray-900 text-white" dir="rtl">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Features & Information Section */}
-        <div>
-          <Typography variant="h5" className="mb-4 font-bold">
-            اساس الوسام للادوات الصحيه بالطائف
-          </Typography>
-          <ul className="space-y-2">
-            <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                الدفع الآمن
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                24/7 دعم
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                توصيل سريع
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="small" className="hover:underline cursor-pointer">
-                برنامج ولاء
-              </Typography>
-            </li>
-          </ul>
-        </div>
+    <div className="relative mt-10 overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-blue-900"></div>
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
 
-        {/* Company Info Section */}
-        <div>
-          <Typography variant="h6" className="mb-4 font-bold">
-            معلومات عنا
-          </Typography>
-          <Typography variant="small" className="opacity-70">
-            نحن ملتزمون بتقديم أفضل المنتجات والخدمات لعملائنا، وضمان تجربة تسوق
-            سلسة وآمنة.
-          </Typography>
+      <div className="relative px-8 py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12" dir="rtl">
+            {/* Company Info */}
+            <div className="space-y-8">
+              <div>
+                <img src="../../public/Wessam.jpg" alt="Logo" className="h-16 w-auto rounded-full" />
+                <h3 className="mt-4 text-2xl font-bold text-white">اساس الوسام للادوات الصحية</h3>
+              </div>
+              <p className="text-gray-300">
+                نحن ملتزمون بتقديم أفضل المنتجات والخدمات لعملائنا، مع ضمان تجربة تسوق سلسة وآمنة.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://www.facebook.com/asas.al.wissam" 
+                   className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                  <FaFacebookF className="h-5 w-5 text-white" />
+                </a>
+                <a href="https://www.tiktok.com" 
+                   className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                  <FaTiktok className="h-5 w-5 text-white" />
+                </a>
+                <a href="https://api.whatsapp.com/send/?phone=966556507642" 
+                   className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                  <FaWhatsapp className="h-5 w-5 text-white" />
+                </a>
+                <a href="https://www.instagram.com/asas.al.wissam" 
+                   className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                  <FaInstagram className="h-5 w-5 text-white" />
+                </a>
+              </div>
+            </div>
 
-          <div className="mt-6">
-            <Typography variant="h6" className="font-bold">
-              عنوان الشركة
-            </Typography>
-            <Typography variant="small" className="opacity-70">
-              العنوان الشهداء الجنوبية شارع 20, Taif, Saudi Arabia
-            </Typography>
+            {/* Quick Links */}
+            <div className="space-y-8">
+              <h3 className="text-xl font-bold text-white">روابط سريعة</h3>
+              <ul className="space-y-4">
+                <li>
+                  <a href="/about" className="text-gray-300 hover:text-white transition-colors">من نحن</a>
+                </li>
+                <li>
+                  <a href="/products" className="text-gray-300 hover:text-white transition-colors">منتجاتنا</a>
+                </li>
+                <li>
+                  <a href="/contact" className="text-gray-300 hover:text-white transition-colors">اتصل بنا</a>
+                </li>
+                <li>
+                  <a href="/support" className="text-gray-300 hover:text-white transition-colors">الدعم الفني</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact & Payment */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold text-white">تواصل معنا</h3>
+                <address className="mt-4 text-gray-300 not-italic">
+                  العنوان الشهداء الجنوبية شارع 20<br />
+                  Taif, Saudi Arabia
+                </address>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-white">طرق الدفع الآمنة</h3>
+                <div className="mt-4 flex gap-4">
+                  <div className="p-4 bg-white rounded-xl">
+                    <img src="https://iconape.com/wp-content/png_logo_vector/paypal-me-logo.png" alt="PayPal" className="h-8" />
+                  </div>
+                  <div className="p-4 bg-white rounded-xl">
+                    <img src="https://iconape.com/wp-content/png_logo_vector/tamara-%D8%AA%D9%85%D8%A7%D8%B1%D8%A7.png" alt="Tamara" className="h-8" />
+                  </div>
+                  <div className="p-4 bg-white rounded-xl">
+                    <img src="https://iconape.com/wp-content/files/xd/389316/svg/389316.svg" alt="Tabby" className="h-8" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mt-6">
-            <Typography variant="h6" className="font-bold">
-              تابعنا
-            </Typography>
-            <div className="flex gap-4 mt-2">
-              <a href="https://www.facebook.com/asas.al.wissam" className="hover:text-blue-500">
-                <FaFacebookF size={20} />
-              </a>
-              <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">
-                <FaTiktok size={20} className="hover:text-black" />
-              </a>
-              <a href="https://api.whatsapp.com/send/?phone=966556507642" target="_blank" rel="noopener noreferrer">
-                <FaWhatsapp size={20} className="hover:text-green-500" />
-              </a>
-              <a href="https://www.instagram.com/asas.al.wissam" className="hover:text-pink-500">
-                <FaInstagram size={20} />
+
+          {/* Bottom Bar */}
+          <div className="mt-16 pt-8 border-t border-white/10">
+            <div className="flex flex-wrap justify-between items-center gap-4">
+              <p className="text-gray-400">© 2024 أساس الوسام. جميع الحقوق محفوظة.</p>
+              <div className="flex gap-4">
+                <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">سياسة الخصوصية</a>
+                <a href="/terms" className="text-gray-400 hover:text-white transition-colors">الشروط والأحكام</a>
+              </div>
+              <a href="https://fashne.net/" className="text-gray-400 hover:text-white transition-colors">
+                Al FASHNE FOR DIGITAL MARKETING AGENCY
               </a>
             </div>
           </div>
         </div>
-
-        {/* Payment Logos Section */}
-        <div>
-          <Typography variant="h6" className="mb-4 font-bold">
-            طرق دفع آمنة
-          </Typography>
-          <div className="flex gap-4">
-
-            <img
-              src="https://iconape.com/wp-content/png_logo_vector/paypal-me-logo.png"
-              alt="PayPal"
-              className="h-16 w-auto"
-            />
-            <img
-              src="https://iconape.com/wp-content/png_logo_vector/tamara-%D8%AA%D9%85%D8%A7%D8%B1%D8%A7.png"
-              alt="Tamara"
-              className="h-16 w-auto"
-            />
-            <img
-              src="https://iconape.com/wp-content/files/xd/389316/svg/389316.svg"
-              alt="Tabby"
-              className="h-16 w-auto"
-            />
-          </div>
-          <Typography variant="small" className="opacity-70 mt-4">
-            جميع المعاملات آمنة ومشفرة.
-          </Typography>
-        </div>
-
       </div>
-
-      {/* Footer Bottom Section */}
-      <div className="mt-10 border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
-        <Typography variant="small" className="opacity-70">
-          أساس الوسام بالطائف. جميع الحقوق محفوظة. © 2024
-        </Typography>
-        <div className="mt-4 md:mt-0">
-          <Button variant="text" size="sm" className="text-white opacity-70 hover:opacity-100">
-            سياسة الخصوصية
-          </Button>
-          <Button variant="text" size="sm" className="text-white opacity-70 hover:opacity-100 mx-4">
-            شروط الخدمة
-          </Button>
-        </div>
-        <Typography variant="h6" className="font-bold ">
-          <a href="https://fashne.net/" className="hover:text-blue-500">
-          Al FASHNE FOR DIGITAL MARKETING AGENCY
-          </a>
-            </Typography>
-      </div>
-    </Card>
+    </div>
   );
 }

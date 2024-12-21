@@ -2,7 +2,7 @@
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-
+import { useEffect, useState } from 'react';
 const navigation = [
   { name: 'تسوق', href: '/product', current: false },
   { name: 'الصفحة الرئيسية', href: '/', current: true },
@@ -10,76 +10,104 @@ const navigation = [
 
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
 
- 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 0);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <Disclosure as="nav" className="bg-slate-50">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button */}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" title='Open main menu' name='Open main menu'>
-              <span className="absolute -inset-0.5" />
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
-            </DisclosureButton>
-          </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex flex-shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src="../../public/Wessam.jpg"
-                className="h-10 w-auto"
-                width={32}
-                height={32}
-              />
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
-              {navigation.map((item) => (
+    <Disclosure as="nav" className={`fixed w-full z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
+    }`}>
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative flex h-20 items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center">
+                <img
+                  src="../../public/Wessam.jpg"
+                  alt="أساس الوسام"
+                  className="h-16 w-auto rounded-full shadow-lg transition-transform hover:scale-105"
+                />
+              </div>
+
+              {/* Desktop Navigation */}
+              <div className="hidden sm:flex sm:space-x-8">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={`relative px-4 py-2 text-sm font-medium transition-colors
+                      ${item.current ? 
+                        'text-blue-600' : 
+                        'text-gray-700 hover:text-blue-600'
+                      }`}
+                  >
+                    {item.name}
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 transition-transform origin-left hover:scale-x-100"></span>
+                  </a>
+                ))}
+              </div>
+
+              {/* Contact Button */}
+              <div className="hidden sm:block">
                 <a
-                  key={item.name}
-                  href={item.href}
-                  aria-current={item.current ? 'page' : undefined}
-                  className={classNames(
-                    item.current ? 'bg-green-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'rounded-md px-3 py-2 text-sm font-medium',
+                  href="/contact"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
+                >
+                  تواصل معنا
+                </a>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <div className="sm:hidden">
+                <DisclosureButton className="inline-flex items-center justify-center rounded-full p-2 text-gray-700 hover:bg-gray-100 transition-colors">
+                  {open ? (
+                    <XMarkIcon className="h-6 w-6" />
+                  ) : (
+                    <Bars3Icon className="h-6 w-6" />
                   )}
+                </DisclosureButton>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <DisclosurePanel className="sm:hidden">
+            <div className="space-y-2 px-4 pb-4 pt-2 bg-white/90 backdrop-blur-md">
+              {navigation.map((item) => (
+                <DisclosureButton
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors
+                    ${item.current ?
+                      'bg-blue-50 text-blue-600' :
+                      'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`}
                 >
                   {item.name}
-                </a>
+                </DisclosureButton>
               ))}
+              <div className="pt-4">
+                <a
+                  href="/contact"
+                  className="flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
+                >
+                  تواصل معنا الآن
+                </a>
+              </div>
             </div>
-
-          </div>
-        </div>
-      </div>
-      <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pb-3 pt-2">
-          {navigation.map((item) => (
-            <DisclosureButton
-              key={item.name}
-              title='Open main menu'
-              name='Open main menu'
-              as="a"
-              href={item.href}
-              aria-current={item.current ? 'page' : undefined}
-              className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
-              )}
-            >
-              {item.name}
-            </DisclosureButton>
-          ))}
-        </div>
-      </DisclosurePanel>
-     
+          </DisclosurePanel>
+        </>
+      )}
     </Disclosure>
   );
 }
+

@@ -1,130 +1,120 @@
+import { motion } from "framer-motion";
+import { MapPinIcon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { FooterWithPaymentLogosAndSocialMedia } from "./Footer";
-import Navbar1 from "./NavBar";
+import NavBar from "./NavBar";
 
-export default function Example() {
+export default function ContactUs() {
+  const contactInfo = [
+    {
+      icon: PhoneIcon,
+      title: "اتصل بنا",
+      details: "+966 556507642",
+      link: "tel:+966556507642"
+    },
+    {
+      icon: EnvelopeIcon,
+      title: "راسلنا",
+      details: "info@elwesam.com",
+      link: "mailto:info@elwesam.com"
+    },
+    {
+      icon: MapPinIcon,
+      title: "موقعنا",
+      details: "الطائف، المملكة العربية السعودية",
+      link: "https://goo.gl/maps/yourLocation"
+    }
+  ];
+
   return (
-    <div>
-      <Navbar1 />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      <NavBar />
 
       {/* Hero Section */}
-      <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
-        <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
-        
-        <div className="mx-auto max-w-2xl lg:max-w-4xl text-center">
-          {/* Logo */}
-          <img
-            alt="Logo"
-            src="./../public/Wessam.jpg"
-            className="mx-auto max-h-64 max-w-auto rounded-full shadow-lg"
-          />
-          
-          {/* Main Content */}
-          <figure className="mt-10 space-y-6 sm:space-y-8 border border-gray-300 p-10 rounded-3xl">
-            <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-              <p>
-                في قلب مدينة الطائف، نُقدم لكم أفضل الحلول لاحتياجاتكم من الأدوات الصحية و السباكة. نعمل بشغف لنقدم لعملائنا مجموعة متنوعة من المنتجات ذات الجودة العالية، مع التركيز على الابتكار والتصميم العصري.
-              </p>
-              <p className="mt-4">
-                نسعى دائمًا لتلبية احتياجاتكم وتوفير تجربة تسوق مريحة وممتعة. سواء كنتم تبحثون عن أدوات جديدة لمشاريعكم المنزلية أو ترغبون في تحديث أنظمة السباكة لديكم، فإننا هنا لخدمتكم.
-              </p>
-              <p className="mt-4">
-                أساس الوسام هو المكان الذي يجمع بين الجودة، الثقة، والأسعار المنافسة. انضموا إلينا واكتشفوا الفرق!
-              </p>
-            </blockquote>
-          </figure>
-
-          {/* Call-to-Action Button */}
-          <div className="mt-10 flex justify-center">
-            <a
-              href="https://api.whatsapp.com/send/?phone=966556507642"
-              className="px-6 py-3 text-white bg-green-700 rounded-full text-lg font-medium hover:bg-green-600 transition-colors duration-300"
-            >
-              تواصل معنا whatsApp
-            </a>
-          </div>
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="relative isolate overflow-hidden pt-24 pb-16"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <motion.div 
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            className="text-center"
+          >
+            <img
+              src="./../public/Wessam.jpg"
+              alt="الوسام"
+              className="mx-auto h-48 w-48 rounded-full object-cover shadow-xl ring-4 ring-white"
+            />
+            <h1 className="mt-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              مرحباً بكم في الوسام
+            </h1>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* About Us Section */}
-      <section className="bg-gray-100 px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">من نحن</h2>
-          <p className="mt-4 text-lg text-gray-700">
-            نحن فريق مكرس لتقديم أفضل الأدوات الصحية وحلول السباكة. مع سنوات من الخبرة، نضع جودة المنتج وراحة العميل كأولوية.
-          </p>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">خدماتنا</h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="p-6 bg-gray-50 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">توريد الأدوات الصحية</h3>
-              <p className="mt-4 text-gray-600">أفضل الأدوات الصحية الحديثة لكل احتياجاتك المنزلية.</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">حلول السباكة المتكاملة</h3>
-              <p className="mt-4 text-gray-600">حلول شاملة لتحديث وصيانة أنظمة السباكة.</p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">خدمة ما بعد البيع</h3>
-              <p className="mt-4 text-gray-600">دعم فني موثوق وخدمة ما بعد البيع متميزة.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="bg-gray-100 px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">آراء عملائنا</h2>
-          <div className="mt-10 space-y-8">
-            <blockquote className="text-lg text-gray-700">
-              &quot;خدمة رائعة ومنتجات عالية الجودة! أساس الوسام هو المكان المناسب لجميع احتياجات السباكة.&ldquo;
-            </blockquote>
-            <blockquote className="text-lg text-gray-700">
-              &quot;فريق محترف وسريع الاستجابة. أنصح الجميع بالتعامل معهم.&quot;
-            </blockquote>
-          </div>
-        </div>
-      </section>
+      {/* Contact Cards */}
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {contactInfo.map((item, index) => (
+          <motion.a
+            key={index}
+            href={item.link}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+            className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <item.icon className="h-8 w-8 text-blue-600 mb-4" />
+            <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+            <p className="mt-2 text-gray-600">{item.details}</p>
+          </motion.a>
+        ))}
+      </div>
 
       {/* Contact Form */}
-      <section id="contact" className="bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">تواصل معنا</h2>
-          <form className="mt-10 space-y-6">
-            <input
-              type="text"
-              placeholder="اسمك"
-              className="w-full px-4 py-2 border border-gray-300 rounded"
-              required
-            />
-            <input
-              type="email"
-              placeholder="البريد الإلكتروني"
-              className="w-full px-4 py-2 border border-gray-300 rounded"
-              required
-            />
-            <textarea
-              placeholder="رسالتك"
-              className="w-full px-4 py-2 border border-gray-300 rounded h-32"
-              required
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 text-white bg-indigo-600 rounded-full text-lg font-medium hover:bg-indigo-700 transition-colors duration-300"
-            >
-              أرسل الرسالة
-            </button>
-          </form>
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-3xl mx-auto px-6 py-16"
+      >
+        <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div className="p-8">
+            <h2 className="text-2xl font-bold text-center mb-8">تواصل معنا</h2>
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
+                  type="text"
+                  placeholder="الاسم"
+                  className="block w-full rounded-xl border-gray-200 px-4 py-3 text-gray-600 transition-all duration-300 focus:border-blue-500 focus:ring-blue-500"
+                />
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
+                  type="email"
+                  placeholder="البريد الإلكتروني"
+                  className="block w-full rounded-xl border-gray-200 px-4 py-3 text-gray-600 transition-all duration-300 focus:border-blue-500 focus:ring-blue-500"
+                />
+              </div>
+              <motion.textarea
+                whileFocus={{ scale: 1.02 }}
+                rows={6}
+                placeholder="رسالتك"
+                className="block w-full rounded-xl border-gray-200 px-4 py-3 text-gray-600 transition-all duration-300 focus:border-blue-500 focus:ring-blue-500"
+              />
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+              >
+                إرسال الرسالة
+              </motion.button>
+            </form>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Footer */}
       <FooterWithPaymentLogosAndSocialMedia />
     </div>
   );
