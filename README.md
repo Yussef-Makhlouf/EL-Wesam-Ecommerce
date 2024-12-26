@@ -2,7 +2,7 @@
 # EL-Wesam-Ecommerce
 
 ## Description
-EL-Wesam-Ecommerce is an ecommerce website project built using JavaScript, HTML, and CSS. The project provides a minimal setup to get React working in Vite with Hot Module Replacement (HMR) and some ESLint rules. This project aims to deliver a modern, responsive ecommerce solution with an easy-to-navigate user interface.
+EL-Wesam-Ecommerce is an ecommerce website project built using React js , tailwind css , material UI , AND MORE . The project provides a minimal setup to get React working in Vite with Hot Module Replacement (HMR) and some ESLint rules. This project aims to deliver a modern, responsive ecommerce solution with an easy-to-navigate user interface.
 
 ## Project Homepage
 You can visit the project homepage at [el-wesam-ecommerce.vercel.app](https://el-wesam-ecommerce.vercel.app).
